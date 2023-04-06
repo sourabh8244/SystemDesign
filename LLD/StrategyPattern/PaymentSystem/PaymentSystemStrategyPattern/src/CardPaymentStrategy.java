@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class CardPaymentStrategy implements PaymentStrategyInterface {
-    int cardNumber = 0;
-    int cvv = 0;
-    double amount = 0;
+    int cardNumber;
+    int cvv;
+    double amount;
 
     Scanner in = new Scanner(System.in);
 
