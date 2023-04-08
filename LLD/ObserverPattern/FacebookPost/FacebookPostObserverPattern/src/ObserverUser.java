@@ -5,30 +5,34 @@ public class ObserverUser implements IObserverUser {
         this.name = name;
     }
 
-    public void likeUpdateAuthor(ObserverUser user, ObservablePost post){
-        System.out.println(this.name+", your post was just liked by "+user.name+".");
-        System.out.println("Like count: "+post.Likes);
+    public void likeUpdateAuthor(IObserverUser user, IObservablePost post){
+        System.out.println(this.getName()+", your post was just liked by "+user.getName()+".");
+        System.out.println("Like count: "+post.getLikes());
     }
 
-    public void commentUpdateAuthor(ObserverUser user, ObservablePost post){
-        System.out.println(this.name+", your post just got a comment by "+user.name+".");
-        System.out.println("Comment count: "+post.Comments);
+    public void commentUpdateAuthor(IObserverUser user, IObservablePost post){
+        System.out.println(this.getName()+", your post just got a comment by "+user.getName()+".");
+        System.out.println("Comment count: "+post.getComments());
     }
 
-    public void likeUpdateUser(ObserverUser user, ObservablePost post){
-        System.out.println(this.name+", you just liked "+user.name+"'s post.");
+    public void likeUpdateUser(IObserverUser user, IObservablePost post){
+        System.out.println(this.getName()+", you just liked "+user.getName()+"'s post.");
     }
 
-    public void commentUpdateUser(ObserverUser user, ObservablePost post){
-        System.out.println(this.name+", you just commented on "+user.name+"'s post.");
+    public void commentUpdateUser(IObserverUser user, IObservablePost post){
+        System.out.println(this.getName()+", you just commented on "+user.getName()+"'s post.");
     }
 
 
-    public void likeUpdateGeneral(ObserverUser user, ObservablePost post){
-        System.out.println(user.name+" just liked "+post.Author.name+"'s post");
+    public void likeUpdateGeneral(IObserverUser user, IObservablePost post){
+        System.out.println(user.getName()+" just liked "+post.getAuthor().getName()+"'s post");
     }
 
-    public void commentUpdateGeneral(ObserverUser user, ObservablePost post){
-        System.out.println(user.name+" just commented on "+post.Author.name+"'s post");
+    public void commentUpdateGeneral(IObserverUser user, IObservablePost post){
+        System.out.println(user.getName()+" just commented on "+post.getAuthor().getName()+"'s post");
+    }
+
+    public String getName(){
+        return this.name;
     }
 }

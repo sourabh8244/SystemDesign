@@ -15,6 +15,7 @@ public class App {
         post1.removeObserver(user2);
 
         post1.addLike(user1);
+        post1.addComment(user3);
 
     }
 }

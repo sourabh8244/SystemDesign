@@ -3,26 +3,28 @@ import java.util.HashSet;
 public class ObservablePost implements IObservablePost {
     int Likes;
     int Comments;
-    ObserverUser Author;
+    IObserverUser Author;
+    HashSet<IObserverUser> userList;
 
-    ObservablePost(ObserverUser user){
+    ObservablePost(IObserverUser user){
         this.Author = user;
+        this.userList = new HashSet<IObserverUser>();
+        addObserver(user);
     }
-
-    HashSet<ObserverUser> userList = new HashSet<ObserverUser>();
-    public void addObserver(ObserverUser user){
+    
+    public void addObserver(IObserverUser user){
         this.userList.add(user);
     };
-    public void removeObserver(ObserverUser user){
+    public void removeObserver(IObserverUser user){
         this.userList.remove(user);
     };
-    public void notifyObserversLike(ObserverUser user){
+    public void notifyObserversLike(IObserverUser user){
         userList.forEach(e -> {
-            System.out.print(e.name+" ");
+            System.out.print(e.getName()+" ");
         });
         System.out.println(" ");
 
-        for (ObserverUser ObserverUser : userList) {
+        for (IObserverUser ObserverUser : userList) {
             if(ObserverUser.equals(this.Author))
                 Author.likeUpdateAuthor(user, this);
             else if(ObserverUser.equals(user))
@@ -32,13 +34,13 @@ public class ObservablePost implements IObservablePost {
         }
     };
 
-    public void notifyObserversComment(ObserverUser user){
+    public void notifyObserversComment(IObserverUser user){
         userList.forEach(e -> {
-            System.out.print(e.name+" ");
+            System.out.print(e.getName()+" ");
         });
         System.out.println(" ");
         
-        for (ObserverUser ObserverUser : userList) {
+        for (IObserverUser ObserverUser : userList) {
             if(ObserverUser.equals(this.Author))
                 Author.commentUpdateAuthor(user, this);
             else if(ObserverUser.equals(user))
@@ -48,16 +50,28 @@ public class ObservablePost implements IObservablePost {
         }
     };
 
-    public void addLike(ObserverUser user){
+    public void addLike(IObserverUser user){
         if(!this.userList.contains(user)) this.userList.add(user);//System.out.println("like");
-        else System.out.println(user.name + " already registered to this post.");
+        else System.out.println(user.getName() + " already registered to this post.");
         this.Likes++;
         this.notifyObserversLike(user);
     }
-    public void addComment(ObserverUser user){
+    public void addComment(IObserverUser user){
         if(!this.userList.contains(user)) this.userList.add(user);//System.out.println("comment");
-        else System.out.println(user.name + " already registered to this post.");
+        else System.out.println(user.getName() + " already registered to this post.");
         this.Comments++;
         this.notifyObserversComment(user);
+    }
+
+    public IObserverUser getAuthor(){
+        return this.Author;
+    }
+
+    public int getLikes(){
+        return this.Likes;
+    }
+
+    public int getComments(){
+        return this.Comments;
     }
 }

@@ -1,8 +1,9 @@
 public interface IObserverUser {
-    void likeUpdateAuthor(ObserverUser user, ObservablePost post);
-    void commentUpdateAuthor(ObserverUser user, ObservablePost post);
-    void likeUpdateUser(ObserverUser user, ObservablePost post);
-    void commentUpdateUser(ObserverUser user, ObservablePost post);
-    void likeUpdateGeneral(ObserverUser user, ObservablePost post);
-    void commentUpdateGeneral(ObserverUser user, ObservablePost post);
+    void likeUpdateAuthor(IObserverUser user, IObservablePost post);
+    void commentUpdateAuthor(IObserverUser user, IObservablePost post);
+    void likeUpdateUser(IObserverUser user, IObservablePost post);
+    void commentUpdateUser(IObserverUser user, IObservablePost post);
+    void likeUpdateGeneral(IObserverUser user, IObservablePost post);
+    void commentUpdateGeneral(IObserverUser user, IObservablePost post);
+    String getName();
 }
